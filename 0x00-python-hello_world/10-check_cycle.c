@@ -1,28 +1,48 @@
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "lists.h"
 
-def has_cycle(head):
-    if not head or not head.next:
-        return False
-    
-    slow = head
-    fast = head.next
-    
-    while fast and fast.next:
-        if slow == fast:
-            return True
-        slow = slow.next
-        fast = fast.next.next
-    
-    return False
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    listint_t *head;
+    listint_t *current;
+    listint_t *temp;
+    int i;
+    int cycle_found;
 
-# Example usage:
-head = ListNode(3)
-head.next = ListNode(2)
-head.next.next = ListNode(0)
-head.next.next.next = ListNode(-4)
-# Creating a cycle
-head.next.next.next.next = head.next
-print(has_cycle(head))  # Output: True
+    head = NULL;
+    add_nodeint(&head, 0);
+    add_nodeint(&head, 1);
+    add_nodeint(&head, 2);
+    add_nodeint(&head, 3);
+    add_nodeint(&head, 4);
+    add_nodeint(&head, 98);
+    add_nodeint(&head, 402);
+    add_nodeint(&head, 1024);
+    print_listint(head);
+
+    cycle_found = check_cycle(head);
+
+    if (cycle_found == 0)
+        printf("Linked list has no cycle\n");
+    else if (cycle_found == 1)
+        printf("Linked list has a cycle\n");
+
+    current = head;
+    for (i = 0; i < 4; i++)
+        current = current->next;
+    temp = current->next;
+    current->next = head;
+
+    cycle_found = check_cycle(head);
+
+    if (cycle_found == 0)
+        printf("Linked list has no cycle\n");
+    e
+
