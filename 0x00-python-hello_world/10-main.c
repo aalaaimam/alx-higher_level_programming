@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 #include "lists.h"
 
@@ -50,4 +49,4 @@ int main(void)
     free_listint(head);
 
     return (0);
-]
+}

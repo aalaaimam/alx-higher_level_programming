@@ -1,21 +1,28 @@
-#!/usr/bin/python3
+#include "lists.h"
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+/**
+ * check_cycle - checks if a singly linked list has a cycle in it
+ * @list: pointer to the head of the list
+ *
+ * Return: 0 if there is no cycle, 1 if there is a cycle
+ */
+int check_cycle(listint_t *list)
+{
+    listint_t *slow, *fast;
 
-def has_cycle(head):
-    if not head or not head.next:
-        return False
-    
-    slow = head
-    fast = head.next
-    
-    while slow != fast:
-        if not fast or not fast.next:
-            return False
-        slow = slow.next
-        fast = fast.next.next
-    
-    return True
+    if (list == NULL || list->next == NULL)
+        return (0);
+
+    slow = list;
+    fast = list->next;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        if (slow == fast)
+            return (1);
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return (0);
+}
