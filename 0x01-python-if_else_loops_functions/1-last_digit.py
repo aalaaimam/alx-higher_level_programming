@@ -8,6 +8,7 @@ print("Last digit of {} is {} and ".format(number, last_digit), end="")
 
 if number < 0:
     last_digit *= -1  # Correcting the last_digit value for negative numbers
+    print("-", end="")  # Print the negative sign for negative numbers
 
 if last_digit > 5:
     print("is greater than 5")
