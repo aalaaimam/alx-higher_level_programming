@@ -1,7 +1,13 @@
 #include <Python.h>
 #include <stdio.h>  // Include standard I/O library for printf function
-
-void print_python_list(PyObject *p) {
+/**
+ * print_python_bytes - Prints bytes information
+ *
+ * @p: Python Object
+ * Return: no return
+ */
+void print_python_list(PyObject *p)
+{
     Py_ssize_t size, i;
     PyObject *item;
 
