@@ -1,65 +1,56 @@
 #include <Python.h>
-#include <stdio.h>  // Include standard I/O library for printf function
+#include <stdio.h>
+
 /**
- * print_python_bytes - Prints bytes information
- *
- * @p: Python Object
- * Return: no return
+ * print_python_list - prints some basic info about Python lists
+ * @p: PyObject pointer
  */
 void print_python_list(PyObject *p)
 {
-    Py_ssize_t size, i;
-    PyObject *item;
-
-    size = PyList_Size(p);
-    if (size == -1) {
-        printf("[*] Failed to retrieve Python list size\n");
-        return;
-    }
+    Py_ssize_t i, size;
+    PyObject *element;
 
     printf("[*] Python list info\n");
-    printf("[*] Size of the Python List = %ld\n", size);
-
-    // Check if the object is actually a list
-    if (!PyList_Check(p)) {
-        printf("[!] Error: Not a Python list\n");
-        return;
-    }
-
+    printf("[*] Size of the Python List = %ld\n", PyList_Size(p));
     printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
 
-    for (i = 0; i < size; ++i) {
-        item = PyList_GetItem(p, i);
-        printf("Element %ld: %s\n", i, Py_TYPE(item)->tp_name);
+    size = PyList_Size(p);
+    for (i = 0; i < size; i++)
+    {
+        element = PyList_GetItem(p, i);
+        printf("Element %ld: %s\n", i, Py_TYPE(element)->tp_name);
     }
 }
 
-void print_python_bytes(PyObject *p) {
-    Py_ssize_t size, i;
-    unsigned char *string;
+/**
+ * print_python_bytes - prints some basic info about Python bytes objects
+ * @p: PyObject pointer
+ */
+void print_python_bytes(PyObject *p)
+{
+    Py_ssize_t i, size;
+    unsigned char *str;
 
     printf("[.] bytes object info\n");
 
-    // Check if the object is actually bytes
-    if (!PyBytes_Check(p)) {
-        printf("[!] Error: Not a Python bytes object\n");
+    if (!PyBytes_Check(p))
+    {
+        printf("  [ERROR] Invalid Bytes Object\n");
         return;
     }
 
     size = PyBytes_Size(p);
-    string = (unsigned char *)PyBytes_AsString(p);
-
-    if (size == -1 || string == NULL) {
-        printf("[*] Failed to retrieve bytes object information\n");
-        return;
-    }
+    str = (unsigned char *)PyBytes_AsString(p);
 
     printf("  size: %ld\n", size);
-    printf("  trying string: %s\n", (char *)string);
+    printf("  trying string: %s\n", str);
 
-    printf("  first %ld bytes: ", (size > 10) ? 10 : size);
-    for (i = 0; i < ((size > 10) ? 10 : size); ++i) {
-        printf("%02x ", string[i]);
+    printf("  first %ld bytes: ", (size < 10) ? size : 10);
+    for (i = 0; i < size && i < 10; i++)
+    {
+        printf("%02x", str[i]);
+        if (i < 9 && i < size - 1)
+            printf(" ");
     }
     printf("\n");
 }
