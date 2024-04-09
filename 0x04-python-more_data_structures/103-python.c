@@ -11,14 +11,20 @@ void print_python_list(PyObject *p)
     PyObject *element;
 
     printf("[*] Python list info\n");
-    printf("[*] Size of the Python List = %ld\n", PyList_Size(p));
+    size = PyList_Size(p);
+    printf("[*] Size of the Python List = %ld\n", size);
     printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
 
-    size = PyList_Size(p);
     for (i = 0; i < size; i++)
     {
-        element = PyList_GetItem(p, i);
+        element = PySequence_GetItem(p, i);
+        if (!element)
+        {
+            printf("Element %ld: <failed to retrieve>\n", i);
+            continue;
+        }
         printf("Element %ld: %s\n", i, Py_TYPE(element)->tp_name);
+        Py_DECREF(element);
     }
 }
 
