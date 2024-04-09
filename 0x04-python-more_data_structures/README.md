@@ -1,0 +1,1 @@
+This project covers various tasks related to Python's more advanced data structures, including sets and dictionaries. It includes solutions to tasks that involve manipulation and operations on sets, dictionaries, and lists.
