@@ -46,9 +46,9 @@ void print_python_bytes(PyObject *p)
         return;
     }
 
-    size = (bytes->ob_size > 10) ? 10 : bytes->ob_size;
+    size = (bytes->ob_base.ob_size > 10) ? 10 : bytes->ob_base.ob_size;
 
-    printf(" size: %ld\n", bytes->ob_size);
+    printf(" size: %ld\n", (long)size);
     printf(" trying string: %s\n", bytes->ob_sval);
     printf(" first %d bytes: ", size);
 
@@ -61,4 +61,3 @@ void print_python_bytes(PyObject *p)
             printf(" ");
     }
 }
-
