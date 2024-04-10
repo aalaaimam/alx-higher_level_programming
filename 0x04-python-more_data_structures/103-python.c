@@ -23,7 +23,9 @@ void print_python_list(PyObject *p)
             printf("Element %ld: <failed to retrieve>\n", i);
             continue;
         }
-        printf("Element %ld: %s\n", i, element->ob_type->tp_name);
+        printf("Element %ld: ", i);
+        PyObject_Print(element, stdout, 0);
+        printf("\n");
         Py_DECREF(element);
     }
 }
@@ -34,7 +36,7 @@ void print_python_list(PyObject *p)
  */
 void print_python_bytes(PyObject *p)
 {
-    Py_ssize_t i, size;
+    Py_ssize_t size;
     unsigned char *str;
 
     printf("[.] bytes object info\n");
@@ -49,10 +51,13 @@ void print_python_bytes(PyObject *p)
     str = (unsigned char *)PyBytes_AsString(p);
 
     printf("  size: %ld\n", size);
-    printf("  trying string: ");
-    for (i = 0; i < size && i < 10; i++)
+    printf("  trying string: %s\n", str);
+    printf("  first %ld bytes: ", size);
+    for (Py_ssize_t i = 0; i < size; i++)
     {
-        printf("%02x ", str[i]);
+        printf("%02x", str[i]);
+        if (i < size - 1)
+            printf(" ");
     }
     printf("\n");
 }
