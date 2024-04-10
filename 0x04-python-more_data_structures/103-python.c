@@ -23,7 +23,7 @@ void print_python_list(PyObject *p)
             printf("Element %ld: <failed to retrieve>\n", i);
             continue;
         }
-        printf("Element %ld: %s\n", i, Py_TYPE(element)->tp_name);
+        printf("Element %ld: %s\n", i, element->ob_type->tp_name); // Changed Py_TYPE to element->ob_type
         Py_DECREF(element);
     }
 }
