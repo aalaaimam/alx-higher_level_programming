@@ -19,7 +19,7 @@ def matrix_divided(matrix, div):
     if (not isinstance(matrix, list) or
         not all(isinstance(row, list) for row in matrix) or
         not all(isinstance(ele, int) or isinstance(ele, float) for row in matrix for ele in row)):
-    raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
 
     if len(matrix) == 0 or any(len(row) == 0 for row in matrix):
         raise TypeError("matrix must not be empty or contain empty rows")
@@ -34,3 +34,4 @@ def matrix_divided(matrix, div):
         raise ZeroDivisionError("division by zero")
 
     return ([list(map(lambda x: round(x / div, 2), row)) for row in matrix])
+
