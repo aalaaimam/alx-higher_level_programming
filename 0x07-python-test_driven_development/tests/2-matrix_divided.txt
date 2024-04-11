@@ -41,10 +41,10 @@ Test division by zero:
     ZeroDivisionError: division by zero
 
 Test 1st arg none:
-    >>> matrix_divided(none, 1)
+    >>> matrix_divided(None, 1)
     Traceback (most recent call last):
     ...
-    NameError: name 'none' is not defined
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 Test empty matrix:
     >>> matrix_divided([[]], 10)
@@ -95,3 +95,4 @@ Test missing 1 arg:
     Traceback (most recent call last):
     ...
     TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+
