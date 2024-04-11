@@ -50,7 +50,7 @@ Test empty matrix:
     >>> matrix_divided([[]], 10)
     Traceback (most recent call last):
     ...
-    TypeError: matrix must be a matrix (list of lists) of integers/floats
+    TypeError: matrix must not be empty or contain empty rows
 
 Test matrix with non number
     >>> matrix_divided([[2, 4, 8], [1, "foo", 3]], 2)
@@ -68,8 +68,7 @@ Test empty matrix more:
     >>> matrix_divided([[], [], []], 10)
     Traceback (most recent call last):
     ...
-    TypeError: matrix must be a matrix (list of lists) of integers/floats
-
+    TypeError: matrix must not be empty or contain empty rows
 
 Test 1st arg str:
     >>> matrix_divided("foo", 1)
@@ -77,12 +76,11 @@ Test 1st arg str:
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-
 Test 1st arg empty list:
     >>> matrix_divided([], 1)
     Traceback (most recent call last):
     ...
-    TypeError: matrix must be a matrix (list of lists) of integers/floats
+    TypeError: matrix must not be empty or contain empty rows
 
 Test division by non num:
     >>> matrix_divided([[2]], "foo")
