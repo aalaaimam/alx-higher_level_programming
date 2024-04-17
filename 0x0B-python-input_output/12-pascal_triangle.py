@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""pascal_traigle module."""
+"""pascal_triangle module."""
 
 
 def pascal_triangle(n):
-    """ pascal traigle class body.
-    """
+    """Generate Pascal's triangle up to the given number of rows."""
     if n <= 0:
         return []
 
     triangles = [[1]]
-    while len(triangles) != n:
-        tri = triangles[-1]
-        tmp = [1]
-        for i in range(len(tri) - 1):
-            tmp.append(tri[i] + tri[i + 1])
-        tmp.append(1)
-        triangles.append(tmp)
-    return
+    while len(triangles) < n:
+        prev_row = triangles[-1]
+        next_row = [1]
+        for i in range(len(prev_row) - 1):
+            next_row.append(prev_row[i] + prev_row[i + 1])
+        next_row.append(1)
+        triangles.append(next_row)
+
+    return triangle
