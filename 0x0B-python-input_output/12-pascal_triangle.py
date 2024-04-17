@@ -16,4 +16,4 @@ def pascal_triangle(n):
         next_row.append(1)
         triangles.append(next_row)
 
-    return triangle
+    return triangles
