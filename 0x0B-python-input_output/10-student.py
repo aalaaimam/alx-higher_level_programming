@@ -1,18 +1,36 @@
-#!/usr/bin/python3
-"""Defines a class Student."""
+#!/usr/bin/env python3
 
+import sys
 
-class Student:
-    """Represent a student."""
+def print_statistics(total_size, status_counts):
+    print("File size:", total_size)
+    for code in sorted(status_counts.keys()):
+        print(f"{code}: {status_counts[code]}")
 
-    def __init__(self, first_name, last_name, age):
-        """Initialize student props."""
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
+def main():
+    total_size = 0
+    status_counts = {}
 
-    def to_json(self, attrs=None):
-        """Return JSON representation of the Student instance."""
-        if isinstance(attrs, list) and all(isinstance(attr, str) for attr in attrs):
-            return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
-        return self.__dict__
+    try:
+        for i, line in enumerate(sys.stdin, start=1):
+            # Parse the line
+            parts = line.split()
+            status_code = parts[-2]
+            file_size = int(parts[-1])
+
+            # Update total file size
+            total_size += file_size
+
+            # Update status code count
+            status_counts[status_code] = status_counts.get(status_code, 0) + 1
+
+            # Print statistics every 10 lines
+            if i % 10 == 0:
+                print_statistics(total_size, status_counts)
+
+    except KeyboardInterrupt:
+        print_statistics(total_size, status_counts)
+        sys.exit(0)
+
+if __name__ == "__main__":
+    main()
