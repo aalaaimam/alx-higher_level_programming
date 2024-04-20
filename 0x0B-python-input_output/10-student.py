@@ -15,5 +15,7 @@ class Student:
         """Return JSON representation of the Student instance."""
         if attrs is not None and isinstance(attrs, list) and \
            all(isinstance(attr, str) for attr in attrs):
-            return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
-        return self.__dict__
+            return {
+                    attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)
+                    }
+            return self.__dict__
