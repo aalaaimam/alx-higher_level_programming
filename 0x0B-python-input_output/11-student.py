@@ -26,5 +26,4 @@ class Student:
 
 # Pycodestyle validation
 if __name__ == "__main__":
-    # This ensures that the code is only executed when the script is run directly
-    pass
+    pass  # This ensures that the code is only executed when the script is run directly
