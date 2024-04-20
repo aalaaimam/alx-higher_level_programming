@@ -13,7 +13,7 @@ class Student:
 
     def to_json(self, attrs=None):
         """Converts object attributes to a JSON-compatible dictionary."""
-        if isinstance(attrs, list) and all(isinstance(ele, str) for ele in attrs):
+        if attrs is not None and isinstance(attrs, list) and all(isinstance(ele, str) for ele in attrs):
             return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
 
